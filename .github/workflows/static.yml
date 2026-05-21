@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Employer Brand Advertising – France · Radar EBA Reps</title>
+  <style>
+    :root {
+      --blue-deep: #003a9b;
+      --blue-green: #237ea3;
+      --violet: #5644bf;
+      --green: #358271;
+      --magenta: #9d2b6b;
+      --bg-light: #f5f7fb;
+      --text-main: #1f2933;
+      --text-muted: #6b7280;
+      --border-subtle: #e0e4f0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+    }
+    .page { max-width: 1200px; margin: 0 auto; padding: 16px 16px 40px; }
+    header {
+      background: var(--blue-deep);
+      color: #ffffff;
+      padding: 16px 20px 20px;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+      position: sticky; top: 0; z-index: 20;
+    }
+    .header-top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .logo { font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; font-size: 14px; opacity: 0.9; }
+    .title-block h1 { margin: 4px 0 2px; font-size: 20px; }
+    .title-block h2 { margin: 0; font-size: 13px; font-weight: 400; opacity: 0.95; }
+    .section-main-title { margin: 12px 0 0; font-size: 15px; font-weight: 600; }
+    .section-main-sub { margin: 4px 0 0; font-size: 13px; opacity: 0.95; }
+    main { margin-top: 16px; display: flex; flex-direction: column; gap: 16px; }
+    .card { background-color: #ffffff; border-radius: 10px; padding: 16px 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); border: 1px solid var(--border-subtle); }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      color: var(--blue-deep);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h3 span.badge {
+      font-size: 11px;
+      background: rgba(0,0,0,0.16);
+      color: #ffffff;
+      padding: 2px 6px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    p { margin: 4px 0 8px; font-size: 13px; color: var(--text-muted); }
+
+    .methodology-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .method-card {
+      background: linear-gradient(135deg, rgba(35,126,163,0.08), rgba(86,68,191,0.08));
+      border-radius: 10px;
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: transform 0.1s, box-shadow 0.1s, background 0.1s;
+    }
+    .method-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      background: linear-gradient(135deg, rgba(35,126,163,0.14), rgba(86,68,191,0.12));
+    }
+    .method-card-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .method-number {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--blue-deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+    }
+    .method-icon { font-size: 16px; opacity: 0.85; }
+    .method-title { font-size: 13px; font-weight: 600; color: var(--blue-deep); }
+    .method-summary { font-size: 12px; color: var(--text-main); margin-top: 4px; }
+    .method-details { font-size: 12px; color: var(--text-muted); margin-top: 6px; display: none; }
+    .method-card.open .method-details { display: block; }
+
+    .legend-list { margin: 6px 0 0; padding-left: 16px; font-size: 13px; color: var(--text-main); }
+    .legend-list li { margin-bottom: 2px; }
+    .legend-note { margin-top: 6px; font-size: 12px; color: var(--text-muted); }
+
+    .filters-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      align-items: flex-end;
+      margin-top: 6px;
+    }
+    .filter-group { display: flex; flex-direction: column; gap: 4px; min-width: 150px; }
+    .filter-group label { font-size: 12px; font-weight: 600; color: var(--text-main); }
+    .filter-input, .filter-select {
+      border-radius: 6px; border: 1px solid var(--border-subtle);
+      padding: 5px 8px; font-size: 12px; min-height: 30px; outline: none; background: #ffffff;
+    }
+    .filter-input:focus, .filter-select:focus {
+      border-color: var(--blue-green);
+      box-shadow: 0 0 0 1px rgba(35,126,163,0.25);
+    }
+    .filters-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+      flex-wrap: wrap;
+    }
+    .btn-reset {
+      background: var(--violet); color: #ffffff;
+      border-radius: 999px; border: none; padding: 6px 14px;
+      font-size: 12px; font-weight: 600; cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    }
+    .btn-reset:hover { background: #4333a5; }
+    .small-pill {
+      font-size: 11px; padding: 2px 6px; border-radius: 999px;
+      background: rgba(0,0,0,0.08); color: var(--text-muted);
+    }
+
+    .table-wrapper { margin-top: 10px; overflow-x: auto; }
+    table {
+      width: 100%; border-collapse: collapse; font-size: 12px;
+      background: #ffffff; border-radius: 10px; overflow: hidden;
+    }
+    thead {
+      background: linear-gradient(90deg, var(--blue-deep), var(--blue-green));
+      color: #ffffff;
+    }
+    th, td {
+      padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border-subtle);
+      vertical-align: top;
+    }
+    th {
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em;
+      cursor: pointer; user-select: none; white-space: nowrap;
+    }
+    th.sortable span {
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    th.sortable span::after {
+      content: "⇅"; font-size: 10px; opacity: 0.7;
+    }
+    th.sortable.sorted-asc span::after { content: "↑"; }
+    th.sortable.sorted-desc span::after { content: "↓"; }
+
+    tbody tr:nth-child(even) { background: #f9fafc; }
+    tbody tr:hover { background: #eef2ff; }
+
+    .score-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 4px 8px; border-radius: 999px; font-weight: 700;
+      font-size: 11px; min-width: 42px; color: #ffffff;
+    }
+    .score-low { background: #9ca3af; }
+    .score-mid { background: var(--blue-green); }
+    .score-high { background: var(--green); }
+    .score-very-high { background: var(--magenta); }
+
+    .tag-badge {
+      display: inline-block; padding: 2px 6px; border-radius: 999px;
+      font-size: 11px; color: #ffffff; margin: 0 4px 3px 0;
+      background: var(--blue-green);
+      white-space: nowrap;
+    }
+    .tag-alt-1 { background: var(--green); }
+    .tag-alt-2 { background: var(--magenta); }
+    .tag-alt-3 { background: var(--violet); }
+
+    .links-cell { font-size: 11px; color: var(--blue-deep); }
+
+    .comment-cell { max-width: 320px; }
+    .muted { color: var(--text-muted); font-size: 11px; }
+
+    .footer {
+      margin-top: 18px; font-size: 11px; color: var(--text-muted);
+      display: flex; flex-wrap: wrap; gap: 4px 12px;
+      justify-content: space-between; border-top: 1px solid var(--border-subtle);
+      padding-top: 8px;
+    }
+
+    @media (max-width: 768px) {
+      header { border-radius: 0; }
+      .filters-bar { flex-direction: column; align-items: stretch; }
+      .filters-actions { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="header-top">
+        <div class="logo">indeed</div>
+        <div class="title-block">
+          <h1>Employer Brand Advertising – France · Radar EBA Reps</h1>
+          <h2>Vue interne reps Indeed France · Opportunités EBA display</h2>
+        </div>
+      </div>
+      <div class="section-main-title">Opportunités EBA – Marché France</div>
+      <div class="section-main-sub">
+        Employeurs en France avec signaux forts de marque employeur &amp; activité social – triés par score d’opportunité EBA (estimation, tous secteurs Indeed FR).
+      </div>
+    </header>
+
+    <main>
+      <section class="card">
+        <h3>Méthodologie : comment utiliser cette page ? <span class="badge">Guide reps</span></h3>
+        <p>Cartes interactives ci-dessous : clique pour dérouler les détails d’usage dans ton cycle de prospection.</p>
+        <div class="methodology-grid">
+          <div class="method-card" data-method="1">
+            <div class="method-card-header">
+              <div class="method-number">1</div>
+              <div class="method-title">Identifier les comptes mûrs EB</div>
+              <div class="method-icon">🔍</div>
+            </div>
+            <div class="method-summary">
+              Repère rapidement les employeurs déjà actifs en marque employeur à fort potentiel display Indeed.
+            </div>
+            <div class="method-details">
+              Utilise le score EBA, le secteur, la taille et les tags EB pour cibler les comptes qui combinent :
+              campagnes social EB, contenus carrière riches et besoins de recrutement récurrents. Priorise les scores &gt; 70.
+            </div>
+          </div>
+          <div class="method-card" data-method="2">
+            <div class="method-card-header">
+              <div class="method-number">2</div>
+              <div class="method-title">Prioriser la prospection display</div>
+              <div class="method-icon">📊</div>
+            </div>
+            <div class="method-summary">
+              Filtre par secteur, taille et score minimal pour construire ta short-list de comptes à activer.
+            </div>
+            <div class="method-details">
+              Combine les filtres Secteur et Taille avec un score EBA élevé pour préparer tes
+              plans de prospection trimestriels (Retail, Banque/Assurance, Santé, Industrie, Tech, etc.).
+            </div>
+          </div>
+          <div class="method-card" data-method="3">
+            <div class="method-card-header">
+              <div class="method-number">3</div>
+              <div class="method-title">Préparer le pitch EBA</div>
+              <div class="method-icon">💬</div>
+            </div>
+            <div class="method-summary">
+              Utilise le commentaire « pitch EBA » pour construire un argumentaire rapide et contextualisé.
+            </div>
+            <div class="method-details">
+              Le commentaire résume l’angle de valeur : soutien aux plans de recrutement, visibilité continue,
+              complémentarité avec LinkedIn, social et Indeed. Adapte-le avec tes insights terrain.
+            </div>
+          </div>
+          <div class="method-card" data-method="4">
+            <div class="method-card-header">
+              <div class="method-number">4</div>
+              <div class="method-title">Vérifier les signaux en temps réel</div>
+              <div class="method-icon">🔗</div>
+            </div>
+            <div class="method-summary">
+              Avant un call, ouvre la librairie publicitaire LinkedIn dans ton navigateur et recherche le compte.
+            </div>
+            <div class="method-details">
+              Utilise la colonne « Liens utiles » comme rappel : ouvre la librairie publicitaire LinkedIn dans ton navigateur,
+              puis saisis le nom du client (ex. « Thales France », « Ville de Paris ») pour vérifier les campagnes EB récentes.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>Légende score EBA (0–100)</h3>
+        <ul class="legend-list">
+          <li><strong>0–40</strong> : signaux EB faibles ou émergents</li>
+          <li><strong>40–70</strong> : EB en développement (potentiel à structurer)</li>
+          <li><strong>70–100</strong> : EB très active, fort potentiel EBA (à activer / prioriser)</li>
+        </ul>
+        <p class="legend-note">
+          Score calculé sur : (1) intensité/nature estimée des campagnes social &amp; display (proxy via investissement recrutement),
+          (2) richesse probable des contenus EB web (proxy via taille &amp; secteur), (3) dynamique de recrutement visible.
+          Saisonnalité EB basée sur signaux publiés 2022–2025 quand disponibles, sinon sur des tendances sectorielles.
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>Filtres &amp; recherche</h3>
+        <div class="filters-bar">
+          <div class="filter-group">
+            <label for="searchInput">Recherche (nom, secteur, tags)</label>
+            <input id="searchInput" type="text" class="filter-input" placeholder="Ex. Thales, ENGIE, SNCF, RATP, Ville de Paris…">
+          </div>
+          <div class="filter-group">
+            <label for="sectorFilter">Secteur</label>
+            <select id="sectorFilter" class="filter-select">
+              <option value="all">Tous secteurs</option>
+              <option>Autres</option>
+              <option>Banque / Assurance / Services financiers</option>
+              <option>Industrie / Construction / Énergie / Logistique</option>
+              <option>Retail / Biens de consommation</option>
+              <option>Santé / Médico-social</option>
+              <option>Services / Conseil / Staffing</option>
+              <option>Tech / IT / Digital</option>
+              <option>Éducation / Public / Associatif</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="sizeFilter">Taille</label>
+            <select id="sizeFilter" class="filter-select">
+              <option value="all">Toutes tailles</option>
+              <option>Grand compte</option>
+              <option>ETI</option>
+              <option>PME</option>
+              <option>Scale-up / Startup</option>
+              <option>Inconnu</option>
+            </select>
+          </div>
+          <div class="filter-group" style="max-width:160px;">
+            <label for="minScoreInput">Score minimal : <span id="minScoreLabel">0</span></label>
+            <input id="minScoreInput" type="range" min="0" max="100" step="5" value="0" style="width:100%;">
+          </div>
+          <div class="filters-actions">
+            <button type="button" class="btn-reset" id="resetFiltersBtn">Réinitialiser filtres</button>
+            <span class="small-pill" id="resultsCount">0 comptes affichés</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>Opportunités EBA – Tous secteurs (France)</h3>
+        <p>
+          Clients Indeed FR par grand secteur – comptes clients finaux uniquement (agrégation des lignes « X for Y ») –
+          triés par score EBA estimé, avec une saisonnalité EB (N-1) approchée.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th class="sortable" data-sort-key="scoreEBA"><span>Score EBA</span></th>
+                <th class="sortable" data-sort-key="employer"><span>Employeur</span></th>
+                <th class="sortable" data-sort-key="sector"><span>Secteur</span></th>
+                <th data-sort-key="size">Taille</th>
+                <th>Saisonnalité EB (N-1, estim.)</th>
+                <th>Tags EB</th>
+                <th>Commentaire pitch EBA</th>
+                <th>Liens utiles</th>
+              </tr>
+            </thead>
+            <tbody id="employersTbody"></tbody>
+          </table>
+        </div>
+        <p class="muted" style="margin-top:6px;">
+          NB : colonne « Campagne EB &lt; 3 mois » volontairement non incluse dans cette vue.
+        </p>
+      </section>
+
+      <div class="footer">
+        <div>Généré le 20/05/2026 – Données internes Indeed (annonceurs FR actifs) + signaux EB &amp; saisonnalité estimés à partir de sources publiques.</div>
+        <div>Usage interne uniquement – orienter la prospection EBA display (tous secteurs) pour les équipes Indeed France.</div>
+      </div>
+    </main>
+  </div>
+
+<script>
+  const employersRaw = [
+    { employer: "Thales France", sector: "Industrie / Construction / Énergie / Logistique", rawIndustry: "Defense/Security", employeeCount: "1000+", type: "Direct Employer", expendedBudget: 634604.0 },
+    { employer: "ENGIE Home Services", sector: "Industrie / Construction / Énergie / Logistique", rawIndustry: "Energy/Utilities", employeeCount: "1000+", type: "Direct Employer", expendedBudget: 745258.0 },
+    { employer: "SNCF Réseau National", sector: "Industrie / Construction / Énergie / Logistique", rawIndustry: "Transportation/Logistics", employeeCount: "1000+", type: "Direct Employer", expendedBudget: 1047309.0 },
+    { employer: "Ville de Paris", sector: "Éducation / Public / Associatif", rawIndustry: "Government/Military", employeeCount: "1000+", type: "Direct Employer", expendedBudget: 366255.0 },
+    { employer: "IDF92-Ville de Neuilly-sur-Seine", sector: "Éducation / Public / Associatif", rawIndustry: "Government/Military", employeeCount: "1000+", type: "Direct Employer", expendedBudget: 128939.0 },
+    { employer: "Service de santé des armées", sector: "Éducation / Public / Associatif", rawIndustry: "Government/Military", employeeCount: "1000+", type: "Direct Employer", expendedBudget: 313041.0 },
+    { employer: "Carrefour", sector: "Retail / Biens de consommation", rawIndustry: "Retail/Consumer Products", employeeCount: "1000+", type: "Direct Employer", expendedBudget: 603358.0 },
+    { employer: "AXA France", sector: "Banque / Assurance / Services financiers", rawIndustry: "Insurance", employeeCount: "1000+", type: "Direct Employer", expendedBudget: 973849.0 },
+    { employer: "McDonalds", sector: "Retail / Biens de consommation", rawIndustry: "Food/Beverage Services", employeeCount: "1000+", type: "Direct Employer", expendedBudget: 4254983.0 },
+    { employer: "E.Leclerc", sector: "Retail / Biens de consommation", rawIndustry: "Retail/Consumer Products", employeeCount: "1000+", type: "Direct Employer", expendedBudget: 3495013.0 }
+  ];
+
+  const seasonalityOverrides = {
+    "Thales France": "Q1-Q2-Q4 (campagnes ingénieurs & tech)",
+    "ENGIE Home Services": "Q1-Q2 (pics recrutement techniciens)",
+    "SNCF Réseau National": "Q1-Q2 (campagnes ferroviaires)",
+    "Ville de Paris": "Q1-Q3 (concours & campagnes public)",
+    "IDF92-Ville de Neuilly-sur-Seine": "Q1-Q3 (recrutements territoriaux)",
+    "Service de santé des armées": "Q1-Q3 (soignants & médecins militaires)",
+    "Carrefour": "Q1-Q3 (soldes & pics GMS)",
+    "AXA France": "Q1-Q2 (campagnes marque employeur & alternance)",
+    "McDonalds": "Q2-Q4 (pics saisonniers & jobs étudiants)",
+    "E.Leclerc": "Q1-Q2-Q4 (soldes, rentrée, fêtes)"
+  };
+
+  const mapSizeLabel = (employeeCount, sector) => {
+    if (!employeeCount) return 'Inconnu';
+    if (employeeCount === '1000+') return 'Grand compte';
+    if (['750-999','500-749','250-499'].includes(employeeCount)) return 'ETI';
+    if (['150-249','50-149'].includes(employeeCount)) return 'PME';
+    if (employeeCount === '1-49') return sector === 'Tech / IT / Digital' ? 'Scale-up / Startup' : 'PME';
+    return 'Inconnu';
+  };
+
+  function computeScores(employers) {
+    const maxBySector = {};
+    employers.forEach(e => {
+      maxBySector[e.sector] = Math.max(maxBySector[e.sector] || 0, e.expendedBudget || 0);
+    });
+    for (const sec in maxBySector) {
+      if (maxBySector[sec] === 0) maxBySector[sec] = 1;
+    }
+
+    employers.forEach(e => {
+      const sectorMax = maxBySector[e.sector] || 1;
+      const budgetNorm = Math.min(1, (e.expendedBudget || 0) / sectorMax);
+
+      let linkedinBase = 10 + 30 * Math.pow(budgetNorm, 0.7);
+      if (['Tech / IT / Digital','Retail / Biens de consommation','Banque / Assurance / Services financiers'].includes(e.sector)) {
+        linkedinBase += 3;
+      }
+      const linkedinScore = Math.round(Math.min(40, linkedinBase));
+
+      let contentScore = 18;
+      const ec = e.employeeCount;
+      if (ec === '1000+') contentScore = 32;
+      else if (['750-999','500-749','250-499'].includes(ec)) contentScore = 26;
+      else if (['150-249','50-149'].includes(ec)) contentScore = 21;
+      else if (ec === '1-49') contentScore = (e.sector === 'Tech / IT / Digital') ? 22 : 16;
+      if (['Tech / IT / Digital','Banque / Assurance / Services financiers'].includes(e.sector) && contentScore < 26 && budgetNorm > 0.4) {
+        contentScore += 3;
+      }
+
+      let baseRecruit = 7;
+      if (ec === '1000+') baseRecruit = 16;
+      else if (['750-999','500-749','250-499'].includes(ec)) baseRecruit = 13;
+      else if (['150-249','50-149'].includes(ec)) baseRecruit = 10;
+      if (e.sector === 'Services / Conseil / Staffing') baseRecruit += 2;
+      const recruitmentScore = Math.round(Math.min(20, baseRecruit * (0.6 + 0.4 * budgetNorm)));
+
+      let score = linkedinScore + contentScore + recruitmentScore;
+      if (!ec) score -= 5;
+      e.scoreEBA = Math.max(0, Math.min(100, score));
+    });
+  }
+
+  function buildTags(e) {
+    const tags = [];
+    const score = e.scoreEBA || 0;
+    const bigBudget = e.expendedBudget > 300000;
+
+    if (e.sector === 'Retail / Biens de consommation') {
+      if (e.employeeCount === '1000+' && bigBudget) tags.push('campagnes nationales EB', 'réseaux de magasins en tension');
+      else if (bigBudget) tags.push('recrutements réguliers en magasin');
+      else tags.push('focus points de vente / terrain');
+    } else if (e.sector === 'Tech / IT / Digital') {
+      if (e.employeeCount === '1000+' || bigBudget) tags.push('profils tech pénuriques', 'marque employeur IT');
+      else if (e.size === 'Scale-up / Startup') tags.push('scale-up / startup digitale');
+      else tags.push('talents digitaux / IT');
+    } else if (e.sector === 'Banque / Assurance / Services financiers') {
+      tags.push('marque employeur bancaire', 'campagnes jeunes diplômes');
+    } else if (e.sector === 'Santé / Médico-social') {
+      tags.push('pénurie soignants', 'enjeux QVT / sens');
+    } else if (e.sector === 'Industrie / Construction / Énergie / Logistique') {
+      tags.push('métiers pénuriques terrain');
+    } else if (e.sector === 'Services / Conseil / Staffing') {
+      tags.push('flux recrutement récurrent');
+    } else if (e.sector === 'Éducation / Public / Associatif') {
+      tags.push('image employeur institutionnelle');
+    } else {
+      tags.push('EB à structurer');
+    }
+
+    if (score >= 75 && tags.length < 3) tags.push('fort potentiel display');
+    else if (score >= 55 && tags.length < 3) tags.push('EB à structurer');
+
+    e.tags = tags.slice(0,3);
+  }
+
+  function buildPitchComment(e) {
+    const score = e.scoreEBA || 0;
+    const size = e.size;
+    const sector = e.sector;
+    let angle;
+    if (score >= 75) {
+      angle = "EB déjà très active : travailler la répétition et la couverture candidats au-delà de LinkedIn, en particulier sur Indeed pour renforcer la préférence employeur.";
+    } else if (score >= 55) {
+      angle = "EB en développement : aider à structurer un calendrier display Indeed qui valorise la culture et soutient les pics de recrutement.";
+    } else {
+      angle = "Signaux EB encore émergents : proposer un socle de visibilité display pour installer les fondamentaux de la marque employeur.";
+    }
+    e.pitchComment = `${size} ${sector.toLowerCase()} avec un score estimé de ${score}/100. ${angle}`;
+  }
+
+  function buildLinks(e) {
+    e.links = {}; // no external links to prevent phishing false positives
+  }
+
+  function buildSeasonality(e) {
+    if (seasonalityOverrides[e.employer]) {
+      return seasonalityOverrides[e.employer];
+    }
+    switch (e.sector) {
+      case 'Retail / Biens de consommation': return 'Q2-Q4 (Retail : alternance, pics fin d’année, notoriété)';
+      case 'Tech / IT / Digital': return 'Q1-Q2 (Tech : plans d’embauche, alternance printemps)';
+      case 'Banque / Assurance / Services financiers': return 'Q1-Q2 (campagnes marque employeur & alternance)';
+      case 'Santé / Médico-social': return 'Q1-Q3 (recrutement continu soignants / médico-social)';
+      case 'Industrie / Construction / Énergie / Logistique': return 'Q2-Q3 (lancements de chantiers, pics opérationnels)';
+      case 'Services / Conseil / Staffing': return 'Q1-Q4 (flux continu, pics Q1 & Q3)';
+      case 'Éducation / Public / Associatif': return 'Q1-Q3 (rentrée, concours, campagnes d’inscription)';
+      default: return 'Inconnu';
+    }
+  }
+
+  function enrichEmployers() {
+    const out = employersRaw.map(er => {
+      const size = mapSizeLabel(er.employeeCount, er.sector);
+      return {
+        employer: er.employer,
+        sector: er.sector,
+        rawIndustry: er.rawIndustry,
+        employeeCount: er.employeeCount,
+        size,
+        type: er.type,
+        expendedBudget: er.expendedBudget,
+        seasonality: buildSeasonality({employer: er.employer, sector: er.sector}),
+      };
+    });
+    computeScores(out);
+    out.forEach(e => {
+      buildTags(e);
+      buildPitchComment(e);
+      buildLinks(e);
+    });
+    return out;
+  }
+
+  const employers = enrichEmployers();
+
+  let currentSort = { key: 'scoreEBA', direction: 'desc' };
+
+  const elements = {
+    tbody: document.getElementById('employersTbody'),
+    searchInput: document.getElementById('searchInput'),
+    sectorFilter: document.getElementById('sectorFilter'),
+    sizeFilter: document.getElementById('sizeFilter'),
+    minScoreInput: document.getElementById('minScoreInput'),
+    minScoreLabel: document.getElementById('minScoreLabel'),
+    resetFiltersBtn: document.getElementById('resetFiltersBtn'),
+    resultsCount: document.getElementById('resultsCount'),
+    sortableHeaders: document.querySelectorAll('th.sortable')
+  };
+
+  function getFilteredEmployers() {
+    const search = elements.searchInput.value.toLowerCase();
+    const sector = elements.sectorFilter.value;
+    const size = elements.sizeFilter.value;
+    const minScore = parseInt(elements.minScoreInput.value, 10);
+
+    return employers.filter(e => {
+      if (sector !== 'all' && e.sector !== sector) return false;
+      if (size !== 'all' && e.size !== size) return false;
+      if ((e.scoreEBA || 0) < minScore) return false;
+      if (search) {
+        const haystack = [e.employer, e.sector, e.size, e.seasonality, ...(e.tags || [])].join(' ').toLowerCase();
+        if (!haystack.includes(search)) return false;
+      }
+      return true;
+    });
+  }
+
+  function sortEmployers(list) {
+    const { key, direction } = currentSort;
+    const dir = direction === 'asc' ? 1 : -1;
+    return list.slice().sort((a, b) => {
+      let va = a[key], vb = b[key];
+      if (key === 'scoreEBA') {
+        va = typeof va === 'number' ? va : 0;
+        vb = typeof vb === 'number' ? vb : 0;
+        if (va === vb) return a.employer.localeCompare(b.employer) * dir;
+        return (va - vb) * dir;
+      }
+      if (typeof va === 'string' && typeof vb === 'string') {
+        return va.localeCompare(vb) * dir;
+      }
+      return 0;
+    });
+  }
+
+  function scoreClass(score) {
+    if (score >= 85) return 'score-very-high';
+    if (score >= 70) return 'score-high';
+    if (score >= 40) return 'score-mid';
+    return 'score-low';
+  }
+
+  function renderTable() {
+    const filtered = getFilteredEmployers();
+    const sorted = sortEmployers(filtered);
+    elements.tbody.innerHTML = '';
+
+    const fragment = document.createDocumentFragment();
+    sorted.forEach(e => {
+      const tr = document.createElement('tr');
+
+      const tdScore = document.createElement('td');
+      const badge = document.createElement('span');
+      badge.className = 'score-badge ' + scoreClass(e.scoreEBA);
+      badge.textContent = e.scoreEBA != null ? e.scoreEBA : '-';
+      tdScore.appendChild(badge);
+      tr.appendChild(tdScore);
+
+      const tdEmployer = document.createElement('td');
+      tdEmployer.textContent = e.employer;
+      tr.appendChild(tdEmployer);
+
+      const tdSector = document.createElement('td');
+      tdSector.textContent = e.sector;
+      tr.appendChild(tdSector);
+
+      const tdSize = document.createElement('td');
+      tdSize.textContent = e.size;
+      tr.appendChild(tdSize);
+
+      const tdSeason = document.createElement('td');
+      tdSeason.textContent = e.seasonality || 'Inconnu';
+      tr.appendChild(tdSeason);
+
+      const tdTags = document.createElement('td');
+      if (e.tags && e.tags.length) {
+        e.tags.forEach((tag, idx) => {
+          const span = document.createElement('span');
+          const altClass = idx === 1 ? 'tag-alt-1' : (idx === 2 ? 'tag-alt-2' : 'tag-alt-3');
+          span.className = 'tag-badge ' + altClass;
+          span.textContent = tag;
+          tdTags.appendChild(span);
+        });
+      } else {
+        tdTags.innerHTML = '<span class="muted">—</span>';
+      }
+      tr.appendChild(tdTags);
+
+      const tdComment = document.createElement('td');
+      tdComment.className = 'comment-cell';
+      tdComment.textContent = e.pitchComment || '';
+      tr.appendChild(tdComment);
+
+      const tdLinks = document.createElement('td');
+      tdLinks.className = 'links-cell';
+      tdLinks.textContent = "Ouvrir la librairie publicitaire LinkedIn et rechercher ce compte avant ton call.";
+      tr.appendChild(tdLinks);
+
+      fragment.appendChild(tr);
+    });
+    elements.tbody.appendChild(fragment);
+
+    elements.resultsCount.textContent = `${sorted.length} comptes affichés`;
+  }
+
+  function resetFilters() {
+    elements.searchInput.value = '';
+    elements.sectorFilter.value = 'all';
+    elements.sizeFilter.value = 'all';
+    elements.minScoreInput.value = 0;
+    elements.minScoreLabel.textContent = '0';
+    currentSort = { key: 'scoreEBA', direction: 'desc' };
+    updateSortHeaders();
+    renderTable();
+  }
+
+  function updateSortHeaders() {
+    elements.sortableHeaders.forEach(th => {
+      th.classList.remove('sorted-asc', 'sorted-desc');
+      const key = th.getAttribute('data-sort-key');
+      if (key === currentSort.key) {
+        th.classList.add(currentSort.direction === 'asc' ? 'sorted-asc' : 'sorted-desc');
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.method-card').forEach(card => {
+      card.addEventListener('click', function () {
+        const isOpen = this.classList.contains('open');
+        document.querySelectorAll('.method-card').forEach(c => c.classList.remove('open'));
+        if (!isOpen) this.classList.add('open');
+      });
+    });
+
+    elements.searchInput.addEventListener('input', renderTable);
+    elements.sectorFilter.addEventListener('change', renderTable);
+    elements.sizeFilter.addEventListener('change', renderTable);
+    elements.minScoreInput.addEventListener('input', e => {
+      elements.minScoreLabel.textContent = e.target.value;
+      renderTable();
+    });
+    elements.resetFiltersBtn.addEventListener('click', resetFilters);
+
+    elements.sortableHeaders.forEach(th => {
+      th.addEventListener('click', () => {
+        const key = th.getAttribute('data-sort-key');
+        if (currentSort.key === key) {
+          currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+        } else {
+          currentSort.key = key;
+          currentSort.direction = key === 'scoreEBA' ? 'desc' : 'asc';
+        }
+        updateSortHeaders();
+        renderTable();
+      });
+    });
+
+    updateSortHeaders();
+    renderTable();
+  });
+</script>
+</body>
+</html>
